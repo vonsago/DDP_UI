@@ -40,13 +40,13 @@ Direction
     |-- components  # Store the directory of the project components
     |-- data        # website resource files eg. mp3 file or and so on
     |-- flux        # use flux to get or set data flow
-    |-- page        # website page components
+    |-- view
+        |-- page    # website page components
+        |-- router      # routers
     |-- static      # src resource files that need to package
-    |-- template    # html template
-    index.html      # app entryn file
-index.js         # 项目发布后的启动文件
+    App.vue         # app entryn file
+
 package.json     # package manage
-.babelrc         # .babelrc file
 .editorconfig    # 开发工具统一管理器
 .gitignore       # git 忽略的文件配置
 .postcssrc.js    # 通过JS插件来转换CSS
