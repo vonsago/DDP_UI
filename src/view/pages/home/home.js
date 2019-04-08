@@ -1,16 +1,23 @@
-//import { first, uniqBy } from 'lodash';
-//import CatalogService from '@/core/services/catalog.service';
+// import { first, uniqBy } from 'lodash';
+// import CatalogService from '@/core/services/catalog.service';
+import bannerImage from '@/assets/images/banner.jpg';
 
 export default {
   name: 'Home',
   created() {
-    this.loadCatalogs();
+    // this.loadCatalogs();
   },
   data() {
+    const item = {
+      date: '2016-05-02',
+      name: '王小虎',
+      address: '上海市普陀区金沙江路 1518 弄'
+    };
     return {
-      // bannerImage,
+      bannerImage,
       catalogList: [],
       catalog: {},
+      tableData: Array(20).fill(item)
     };
   },
   methods: {
@@ -38,7 +45,7 @@ export default {
   computed: {
     availableServices() {
       if (!this.catalog.services) return [];
-      return uniqBy(this.catalog.services.filter(service => service.available), 'name');
+      
     },
   },
-}
+};

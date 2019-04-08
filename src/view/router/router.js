@@ -3,7 +3,7 @@ import Router from 'vue-router';
 
 //home 
 import Home from '@/view/pages/home/home.vue';
-
+import Login from '@/view/pages/login/login.vue';
 
 Vue.use(Router);
 
@@ -23,7 +23,16 @@ const router = new Router({
         meta: {
           public: true,
         },
-      }]
+      },
+      {
+        path: '/login',
+        name: 'login',
+        component: Login,
+        meta: {
+          public: true,
+        },
+      },
+    ]
     });
 
 export default router;

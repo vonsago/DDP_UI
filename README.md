@@ -39,7 +39,7 @@ Direction
 |-- src
     |-- components  # Store the directory of the project components
     |-- data        # website resource files eg. mp3 file or and so on
-    |-- flux        # use flux to get or set data flow
+    |-- core        # use flux to get or set data flow
     |-- view
         |-- page    # website page components
         |-- router      # routers

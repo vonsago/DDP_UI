@@ -1,0 +1,187 @@
+.login-layout {
+    // position: fixed;
+    padding-top: 150px;
+    // width: 100vw;
+    height: 100%;
+    .bg-img {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: url("/assets/images/login-bg.jpg") no-repeat;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      z-index: -1;
+    }
+    .logo {
+      margin-bottom: 30px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      img, svg {
+        height: 32px;
+        border: 0;
+      }
+      svg {
+        height: 48px;
+        margin-left: -13px;
+      }
+      .login-logo {
+        width: 180px;
+        height: 60px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+    }
+    .shake {
+      -webkit-animation: panelShakeAnimation 0.4s ease-in-out;
+      -moz-animation: panelShakeAnimation 0.4s ease-in-out;
+      animation: panelShakeAnimation 0.4s ease-in-out;
+    }
+    @keyframes panelShakeAnimation {
+      12.5% {
+        -webkit-transform: translateX(-6px) rotateY(-5deg);
+        -moz-transform: translateX(-6px) rotateY(-5deg);
+        -ms-transform: translateX(-6px) rotateY(-5deg);
+        -o-transform: translateX(-6px) rotateY(-5deg);
+        transform: translateX(-6px) rotateY(-5deg);
+      }
+      37.5% {
+        -webkit-transform: translateX(5px) rotateY(4deg);
+        -moz-transform: translateX(5px) rotateY(4deg);
+        -ms-transform: translateX(5px) rotateY(4deg);
+        -o-transform: translateX(5px) rotateY(4deg);
+        transform: translateX(5px) rotateY(4deg);
+      }
+      62.5% {
+        -webkit-transform: translateX(-3px) rotateY(-2deg);
+        -moz-transform: translateX(-3px) rotateY(-2deg);
+        -ms-transform: translateX(-3px) rotateY(-2deg);
+        -o-transform: translateX(-3px) rotateY(-2deg);
+        transform: translateX(-3px) rotateY(-2deg);
+      }
+      87.5% {
+        -webkit-transform: translateX(2px) rotateY(1deg);
+        -moz-transform: translateX(2px) rotateY(1deg);
+        -ms-transform: translateX(2px) rotateY(1deg);
+        -o-transform: translateX(2px) rotateY(1deg);
+        transform: translateX(2px) rotateY(1deg);
+      }
+      100% {
+        -webkit-transform: translateX(0);
+        -moz-transform: translateX(0);
+        -ms-transform: translateX(0);
+        -o-transform: translateX(0);
+        transform: translateX(0);
+      }
+    }
+    .login-container {
+      font-size: 14px;
+      position: relative;
+      width: 310px;
+      margin: 0 auto;
+      padding: 27px 20px 30px;
+      border-radius: 4px;
+      background-color: #fff;
+      box-shadow: 0 15px 30px 0 rgba(0, 0, 1, 0.1);
+      p.error-alert {
+        font-size: 14px;
+        line-height: 24px;
+        margin: 0 auto 15px;
+        text-align: center;
+        color: #f1483f;
+      }
+      .title {
+        font-size: 17px;
+        font-weight: 400;
+        line-height: 24px;
+        margin: 0;
+        padding: 0 20px;
+        text-align: center;
+        color: #595f69;
+      }
+      .header-line {
+        width: 120px;
+        margin: 6px auto 14px;
+        border: none;
+        background: linear-gradient(
+          90deg,
+          #fff 0,
+          #e4e7ed 30px,
+          #e4e7ed calc(100% - 30px),
+          #fff 100%
+        );
+        height: 1px;
+      }
+      .signin-btn {
+        width: 100%;
+        padding: 8px 18px;
+        margin-left: 0;
+      }
+      .form-group {
+        margin-bottom: 24px;
+        label {
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 24px;
+          display: block;
+          margin-bottom: 5px;
+          color: #9ba3af;
+          cursor: default;
+        }
+        .dao-input-container {
+          width: 100%;
+        }
+        input {
+          line-height: 1;
+          width: 270px;
+          height: 32px;
+          margin: 0;
+          padding: 0 10px;
+          -webkit-transition: all 0.25s ease;
+          transition: border 0.25s ease;
+          text-align: left;
+          color: #3d444f;
+          border: 1px solid #ccd1d9;
+          border-radius: 2px;
+          outline: 0;
+          background-color: #fff;
+          box-shadow: none;
+        }
+      }
+    }
+    .login-btn {
+      width: 100%;
+    }
+    .sso-btn {
+      margin: 10px 0;
+      width: 100%;
+      padding: 8px 18px;
+    }
+    .gap {
+      font-size: 12px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      margin: 24px 0 8px;
+      color: #9ba3af;
+      &:after, &:before {
+        content: "";
+        position: absolute;
+        width: 25%;
+        height: 1px;
+        background-color: #eee;
+        top: .7em;
+      }
+      &:before {
+        left:0
+      }
+      &:after{
+        right:0
+      }
+    }
+  }
+  
