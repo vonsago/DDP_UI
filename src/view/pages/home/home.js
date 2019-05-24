@@ -29,6 +29,12 @@ export default {
     //   });
     // },
 
+    loadCatalogs () {
+      this.$api.get('instances', null, r => {
+        console.log(r)
+      })
+    },
+
     switchCatalog(catalog) {
       this.catalog = catalog;
     },
