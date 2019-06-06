@@ -1,87 +1,59 @@
+import DockerService from '@/core/docker.respository';
+
+import loginBackground from '@/assets/images/login-bg.jpg';
+
 export default {
+  name: 'Login',
   data() {
-    //用户名
-    var validateUserName = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请输入您的登录账户名'))
-      } else if (!/[A-Za-z0-9~!@#$%^&*()_+]{4,30}$/.test(value)) {
-        callback(new Error('登录账户名格式不符'))
-      } else {
-        callback();
-      }
-    };
-    //密码验证
-    var validatePass = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请输入密码'));
-      } else {
-        if (!/^[A-Za-z0-9~!@#$%^&*()_+]{6,15}$/.test(value)) {
-          callback(new Error('请输入6~15位字母、数字或字符组成的密码'));
-        }
-        if (this.addForm.Checkpass !== '') {
-          this.$refs.addForm.validateField('Checkpass');
-        }
-        callback();
-      }
-    };
-    //验证码
-    var validateCheck = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请输入验证码'));
-      } else {
-        if (!/^[A-Za-z0-9]{4}$/.test(value)) {
-          callback(new Error('请正确输入4位验证码'));
-        }
-        callback();
-      }
-    };
     return {
-      logining: false,
-      logintext: "登录",
-      ruleForm: {
-        account: 'admin',
-        checkPass: '123456',
-        checkCode: ''
-      },
-      checkImg: {},
-      rules: {
-        account: [
-          { required: true, validator: validateUserName, trigger: 'blur' }
-        ],
-        checkPass: [
-          { required: true, message: '请输入密码', trigger: 'blur' },
-          { min: 3, max: 20, message: '请输入6到15个密码', trigger: 'blur' }
-        ],
-        // checkCode: [
-        //   { required: true, validator: validateCheck, trigger: 'blur' },
-        // ]
+      loginBackground,
+      loginFail: false,
+      user: {
+        username: '',
+        password: '',
       }
     };
   },
   methods: {
-    handleReset() {
-      this.$refs.ruleForm.resetFields();
+    login() {
+      if (!this.isFromValid) {
+        this.shake();
+        this.$noty.error('请输入正确的用户名和密码');
+      } else {
+        DockerService.login(this.user.username, this.user.password)
+          .then(() => {
+            this.$noty.success('登录成功');
+            this.returnToPage();
+            this.user.username = '';
+          })
+          .finally(() => {
+            this.user.password = '';
+          });
+      }
     },
-    handleSubmit() {
-      var _this = this;
-      this.$refs.ruleForm.validate((valid) => {
-        if (valid) {
-          _this.logining = true;
-          _this.logintext = "正在登录...";
-          setTimeout(function () {
-            _this.logining = false;
-            _this.logintext = "登录";
-            _this.$message({
-              message: '登录成功',
-              type: 'success'
-            });
-            sessionStorage.setItem('BIGDATA_PLATFORM', JSON.stringify(_this.ruleForm));
-            _this.$router.push({ path: '/' });
-          }, 1000);
-        } else {
-          return false;
+
+    returnToPage() {
+      const { query } = this.$route;
+      if (query.from) {
+        let { from } = query;
+        try {
+          from = JSON.parse(from);
+        } catch (err) {
+          /** do nothing */
         }
-      });
-    }
+        this.$router.push(from);
+      } else {
+        this.$router.push({
+          name: 'console',
+        });
+      }
+    },
+
+    shake() {
+      this.loginFail = true;
+      setTimeout(() => {
+        this.loginFail = false;
+      }, 400);
+    },
   },
-}
+};
