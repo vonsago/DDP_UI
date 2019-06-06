@@ -14,22 +14,11 @@ export default {
       }
     };
   },
+
+
   methods: {
     login() {
-      if (!this.isFromValid) {
-        this.shake();
-        this.$noty.error('请输入正确的用户名和密码');
-      } else {
-        DockerService.login(this.user.username, this.user.password)
-          .then(() => {
-            this.$noty.success('登录成功');
-            this.returnToPage();
-            this.user.username = '';
-          })
-          .finally(() => {
-            this.user.password = '';
-          });
-      }
+      DockerService.login(this.user.username, this.user.password)
     },
 
     returnToPage() {
@@ -55,5 +44,6 @@ export default {
         this.loginFail = false;
       }, 400);
     },
+
   },
 };

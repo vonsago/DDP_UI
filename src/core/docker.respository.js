@@ -5,8 +5,13 @@ class DockerService {
     this.api = api;
   }
 
-  dockerLogin(params) {
-    return this.api.post('/login', params);
+  login(username, password) {
+    return this.api.post('/login', {
+      username,
+      password,
+    },
+    {headers:{"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"}}
+    )
   }
 }
 

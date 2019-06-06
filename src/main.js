@@ -2,7 +2,7 @@ import Vue from 'vue'
 import ElementUI from 'element-ui';
 import App from './App.vue'
 import router from '@/view/router/router';
-import api from './api/index.js'
+import api from '@/core/api/index.js'
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
