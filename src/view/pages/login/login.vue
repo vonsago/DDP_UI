@@ -1,6 +1,6 @@
 <template>
     <div class="login-layout">
-      
+
     <div class="bg-img" :style="{backgroundImage: `url('${loginBackground}')`}"></div>
     <el-form label-position="left" label-width="0px" class="login-container">
       <h3 class="title">Dokcer ID 登录</h3>
@@ -20,8 +20,7 @@
           size="large" 
           :maxlength="32" 
           auto-complete="off" 
-          placeholder="登录密码"
-          @keyup.enter.native="login">
+          placeholder="登录密码">
         </el-input>
       </el-form-item>
       <el-form-item style="width:100%;" class="login-btn">
