@@ -44,12 +44,14 @@
     </el-menu>
   </el-aside>
     <el-main>
-      <el-table :data="tableData">
-        <el-table-column prop="date" label="日期" width="140">
+      <el-table :data="Containers">
+        <el-table-column prop="created" label="创建时间" width="140">
         </el-table-column>
-        <el-table-column prop="name" label="姓名" width="120">
+        <el-table-column prop="name" label="容器名" width="120">
         </el-table-column>
-        <el-table-column prop="address" label="地址">
+        <el-table-column prop="short_id" label="short id">
+        </el-table-column>
+        <el-table-column prop="status" label="状态">
         </el-table-column>
       </el-table>
     </el-main>

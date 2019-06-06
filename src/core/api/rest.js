@@ -1,5 +1,13 @@
 import axios from 'axios';
 import Qs from 'qs';
+axios.interceptors.request.use(
+	config => {
+		if (config.method === 'post') {
+			config.data = Qs.stringify(config.data)
+		}
+		return config
+	}
+)
 
 class REST {
   constructor(endPointURL, config = {}) {

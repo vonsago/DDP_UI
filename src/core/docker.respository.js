@@ -9,9 +9,7 @@ class DockerService {
     return this.api.post('/login', {
       username,
       password,
-    },
-    {headers:{"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"}}
-    )
+    })
   }
 }
 
