@@ -1,7 +1,6 @@
 import ContainerService from '@/core/docker.container';
 
 import bannerImage from '@/assets/images/banner.jpg';
-
 export default {
   name: 'Home',
   created() {
@@ -16,16 +15,11 @@ export default {
   },
   methods: {
     loadContainers() {
-      ContainerService.getList().then(resp => {
-        this.Containers = resp.rows
-        console.log(resp)
-      });
-    },
-
-    loadContainers () {
-      this.$api.get('instances', null, r => {
-        console.log(r)
-      })
+      ContainerService.getList().then(res => {
+        this.Containers = res.data
+      }).catch(function(error){
+        console.log(error); // eslint-disable-line
+       })
     },
 
     switchCatalog(catalog) {

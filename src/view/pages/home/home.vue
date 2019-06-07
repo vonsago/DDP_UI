@@ -44,16 +44,41 @@
     </el-menu>
   </el-aside>
     <el-main>
-      <el-table :data="Containers">
-        <el-table-column prop="created" label="创建时间" width="140">
-        </el-table-column>
-        <el-table-column prop="name" label="容器名" width="120">
-        </el-table-column>
-        <el-table-column prop="short_id" label="short id">
-        </el-table-column>
-        <el-table-column prop="status" label="状态">
-        </el-table-column>
-      </el-table>
+       <el-table
+    :data="Containers"
+    border
+    style="width: 100%">
+    <el-table-column
+      fixed
+      prop="short_id"
+      label="short id"
+      width="150">
+    </el-table-column>
+    <el-table-column
+      prop="name"
+      label="容器名"
+      width="120">
+    </el-table-column>
+    <el-table-column
+      prop="status"
+      label="状态"
+      width="120">
+    </el-table-column>
+    <el-table-column
+      prop="created"
+      label="创建时间"
+      width="120">
+    </el-table-column>
+    <el-table-column
+      fixed="right"
+      label="操作"
+      width="100">
+      <template slot-scope="scope">
+        <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+        <el-button type="text" size="small">编辑</el-button>
+      </template>
+    </el-table-column>
+  </el-table>
     </el-main>
   </el-container>
 </el-container>

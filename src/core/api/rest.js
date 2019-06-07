@@ -43,7 +43,7 @@ class REST {
     const getConfig = {};
     if (params) Object.assign(getConfig, { params });
     if (config) Object.assign(getConfig, config);
-
+    
     return this.rest.get(url, getConfig);
   }
 
