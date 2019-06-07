@@ -14,11 +14,26 @@ export default {
       }
     };
   },
-
-
+  created() {
+    if (DockerService.check()) {
+      alert(1)
+      this.returnToPage();
+    }
+  },
   methods: {
     login() {
-      DockerService.login(this.user.username, this.user.password)
+      DockerService.login(this.user.username, this.user.password).then(res => {
+        console.log(res); // eslint-disable-line no-console
+
+        if (res.status == 200) {
+          this.$notify({
+            title : '提示信息',
+            message : '登录成功',
+            type : 'success'
+          });
+          this.$router.push({path:'/'})
+        }
+      })
     },
 
     returnToPage() {

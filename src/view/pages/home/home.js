@@ -16,10 +16,9 @@ export default {
   methods: {
     loadContainers() {
       ContainerService.getList().then(res => {
-        this.Containers = res.data
-      }).catch(function(error){
-        console.log(error); // eslint-disable-line
-       })
+        console.log(res); // eslint-disable-line no-console
+        this.Containers = res.data;
+      });
     },
 
     switchCatalog(catalog) {
