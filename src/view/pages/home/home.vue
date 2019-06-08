@@ -2,17 +2,17 @@
 
 <el-container style="min-height: 100%; border: 1px solid #eee">
   <el-header style="text-align: right; font-size: 12px">
-    <el-dropdown>
-      <i class="el-icon-setting" style="margin-right: 15px"></i>
-      <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item>查看</el-dropdown-item>
-        <el-dropdown-item>新增</el-dropdown-item>
-        <el-dropdown-item>删除</el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
-    <a class="home_login" href="#/login">登录</a>
+    <el-dropdown @command="handleCommand">
+    <el-button icon=el-icon-setting type="primary">
+      更多操作<i class="el-icon-arrow-down el-icon--right"></i>
+    </el-button>
+    <el-dropdown-menu slot="dropdown">
+      <el-dropdown-item icon=el-icon-user command="login">登录Docker</el-dropdown-item>
+      <el-dropdown-item icon=el-icon-info command="version">平台版本</el-dropdown-item>
+      <el-dropdown-item icon=el-icon-star-on command="star">给我点赞</el-dropdown-item>
+    </el-dropdown-menu>
+  </el-dropdown>
   </el-header>
-
   <div
       class="el-header home__header"
       :style="{ 'background-image': `url('${bannerImage}')` }">
