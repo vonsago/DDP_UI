@@ -89,17 +89,17 @@
         label="操作"
         width="200">
         <template slot-scope="scope">
-          <el-button icon="el-icon-refresh"  @click="handleClick(scope.row)" type="text" size="small">重启 |</el-button>
+          <el-button icon="el-icon-refresh"  @click="restartContainer(scope.$index, scope.row)" type="text" size="small">重启 |</el-button>
           <el-popover
           placement="top"
           width="160"
           v-model="visible">
           <p>您确认删除此容器吗</p>
           <div style="text-align: right; margin: 0">
-            <el-button size="mini" type="text">取消</el-button>
+            <el-button size="mini" type="text" @click="visible = false">取消</el-button>
             <el-button type="primary" size="mini" @click="deleteContainer(scope.$index, scope.row)">确定</el-button>
           </div>
-          <el-button icon="el-icon-remove"  slot="reference" type="text" size="small">删除 </el-button>
+          <el-button icon="el-icon-remove"  slot="reference" type="text" size="small" @click="visible = true">删除 </el-button>
           </el-popover>
           <el-button type="text" size="small">| 查看<i class="el-icon-view el-icon--right"></i></el-button>
         </template>

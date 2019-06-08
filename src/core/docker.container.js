@@ -12,6 +12,10 @@ class ContainerService {
   removeContainer(containerId) {
     return this.api.delete(`/instances/${containerId}/stop`)
   }
+
+  restartContainer(containerId) {
+    return this.api.post(`instances/${containerId}/restart`)
+  }
 }
 
 export default new ContainerService();

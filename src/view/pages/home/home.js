@@ -10,6 +10,7 @@ export default {
     return {
       bannerImage,
       Containers: [],
+      visible: false,
       tableData: []
     };
   },
@@ -30,10 +31,28 @@ export default {
         this.Containers = res.data;
       });
     },
-
     deleteContainer(index, row) {
-      ContainerService.removeContainer(row.short_id).then(() => {
-        console.log(index, row);  // eslint-disable-line no-console
+      ContainerService.removeContainer(row.short_id).then(res => {
+        if (res.status == 200) {
+          this.$notify({
+            title : '提示信息',
+            message : '删除成功',
+            type : 'success'
+          });
+          location.reload()
+        }
+      });
+    },
+    restartContainer(index, row) {
+      ContainerService.restartContainer(row.short_id).then(res => {
+        if (res.status == 200) {
+          this.$notify({
+            title : '提示信息',
+            message : '重启成功',
+            type : 'success'
+          });
+          location.reload()
+        }
       });
     },
     handleCommand(command) {
