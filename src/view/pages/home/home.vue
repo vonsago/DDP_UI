@@ -7,9 +7,10 @@
       更多操作<i class="el-icon-arrow-down el-icon--right"></i>
     </el-button>
     <el-dropdown-menu slot="dropdown">
-      <el-dropdown-item icon=el-icon-user command="login">登录Docker</el-dropdown-item>
+      <el-dropdown-item icon=el-icon-loading command="login">登录Docker</el-dropdown-item>
+      <el-dropdown-item icon=el-icon-circle-plus-outline command="create">注册Docker</el-dropdown-item>
       <el-dropdown-item icon=el-icon-info command="version">平台版本</el-dropdown-item>
-      <el-dropdown-item icon=el-icon-star-on command="star"><a :underline="false" href="https://github.com/vonsago/service_platform">给我点赞</a></el-dropdown-item>
+      <el-dropdown-item icon=el-icon-star-on command="star">给我点赞</el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
   </el-header>
@@ -29,8 +30,9 @@
       <el-submenu index="1">
         <template slot="title"><i class="el-icon-menu"></i>导航</template>
         <el-menu-item-group>
-          <el-menu-item index="2-1">选项1</el-menu-item>
-          <el-menu-item index="2-2">选项2</el-menu-item>
+          <el-menu-item index="2-1">启动容器</el-menu-item>
+          <el-menu-item index="2-1">构建镜像</el-menu-item>
+          <el-menu-item index="2-2">镜像仓库</el-menu-item>
         </el-menu-item-group>
 
       </el-submenu>
@@ -44,7 +46,13 @@
     </el-menu>
   </el-aside>
   <el-container>
-    <el-table :data="Containers" border style="width: 100%">
+    <el-table 
+    v-loading="loading"
+    element-loading-text="拼命加载中"
+    element-loading-spinner="el-icon-loading"
+    element-loading-background="rgba(0, 0, 0, 0.8)"
+    :data="Containers" border style="width: 100%"
+    >
       <el-table-column
         fixed
         prop="short_id"
@@ -81,8 +89,19 @@
         label="操作"
         width="200">
         <template slot-scope="scope">
-          <el-button icon="el-icon-edit"  @click="handleClick(scope.row)" type="text" size="small">编辑</el-button>
-          <el-button type="text" size="small">查看<i class="el-icon-view el-icon--right"></i></el-button>
+          <el-button icon="el-icon-refresh"  @click="handleClick(scope.row)" type="text" size="small">重启 |</el-button>
+          <el-popover
+          placement="top"
+          width="160"
+          v-model="visible">
+          <p>您确认删除此容器吗</p>
+          <div style="text-align: right; margin: 0">
+            <el-button size="mini" type="text">取消</el-button>
+            <el-button type="primary" size="mini" @click="deleteContainer(scope.$index, scope.row)">确定</el-button>
+          </div>
+          <el-button icon="el-icon-remove"  slot="reference" type="text" size="small">删除 </el-button>
+          </el-popover>
+          <el-button type="text" size="small">| 查看<i class="el-icon-view el-icon--right"></i></el-button>
         </template>
       </el-table-column>
     </el-table>

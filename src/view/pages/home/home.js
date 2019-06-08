@@ -14,12 +14,6 @@ export default {
     };
   },
   methods: {
-    loadContainers() {
-      ContainerService.getList().then(res => {
-        console.log(res); // eslint-disable-line no-console
-        this.Containers = res.data;
-      });
-    },
     version() {
       this.$alert('这是一段内容', '标题名称', {
         confirmButtonText: '确定',
@@ -31,6 +25,17 @@ export default {
         }
       });
     },
+    loadContainers() {
+      ContainerService.getList().then(res => {
+        this.Containers = res.data;
+      });
+    },
+
+    deleteContainer(index, row) {
+      ContainerService.removeContainer(row.short_id).then(() => {
+        console.log(index, row);  // eslint-disable-line no-console
+      });
+    },
     handleCommand(command) {
       if (command=='version') {
         this.$message('当前的Docker的版本为: 18.06.1-ce');
@@ -39,7 +44,10 @@ export default {
         this.$router.push('/login');
       }
       else if (command=='create') {
-        this.$router.push('https://cloud.docker.com/');
+        window.location = 'https://cloud.docker.com/'
+      }
+      else if (command=='star') {
+        window.location = 'https://github.com/vonsago/service_platform'
       }
     },
     switchCatalog(catalog) {
