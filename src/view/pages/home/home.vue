@@ -9,7 +9,7 @@
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item icon=el-icon-user command="login">登录Docker</el-dropdown-item>
       <el-dropdown-item icon=el-icon-info command="version">平台版本</el-dropdown-item>
-      <el-dropdown-item icon=el-icon-star-on command="star">给我点赞</el-dropdown-item>
+      <el-dropdown-item icon=el-icon-star-on command="star"><a :underline="false" href="https://github.com/vonsago/service_platform">给我点赞</a></el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
   </el-header>
@@ -43,43 +43,50 @@
       </el-submenu>
     </el-menu>
   </el-aside>
-    <el-main>
-       <el-table
-    :data="Containers"
-    border
-    style="width: 100%">
-    <el-table-column
-      fixed
-      prop="short_id"
-      label="short id"
-      width="150">
-    </el-table-column>
-    <el-table-column
-      prop="name"
-      label="容器名"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      prop="status"
-      label="状态"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      prop="created"
-      label="创建时间"
-      width="120">
-    </el-table-column>
-    <el-table-column
-      fixed="right"
-      label="操作"
-      width="100">
-      <template slot-scope="scope">
-        <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
-        <el-button type="text" size="small">编辑</el-button>
-      </template>
-    </el-table-column>
-  </el-table>
-    </el-main>
+  <el-container>
+    <el-table :data="Containers" border style="width: 100%">
+      <el-table-column
+        fixed
+        prop="short_id"
+        label="容器ID"
+        width="150">
+      </el-table-column>
+      <el-table-column
+        prop="name"
+        label="容器名"
+        width="150">
+      </el-table-column>
+      <el-table-column
+        prop="image"
+        label="镜像名"
+        width="200">
+      </el-table-column>
+      <el-table-column
+        prop="prots"
+        label="端口映射"
+        width="350">
+      </el-table-column>
+      <el-table-column
+        prop="status"
+        label="状态"
+        width="100">
+      </el-table-column>
+      <el-table-column
+        prop="created"
+        label="创建时间"
+        width="200">
+      </el-table-column>
+      <el-table-column
+        fixed="right"
+        label="操作"
+        width="200">
+        <template slot-scope="scope">
+          <el-button icon="el-icon-edit"  @click="handleClick(scope.row)" type="text" size="small">编辑</el-button>
+          <el-button type="text" size="small">查看<i class="el-icon-view el-icon--right"></i></el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    </el-container>
   </el-container>
 </el-container>
 
