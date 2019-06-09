@@ -23,8 +23,6 @@ export default {
   methods: {
     login() {
       DockerService.login(this.user.username, this.user.password).then(res => {
-        console.log(res); // eslint-disable-line no-console
-
         if (res.status == 200) {
           this.$notify({
             title : '提示信息',

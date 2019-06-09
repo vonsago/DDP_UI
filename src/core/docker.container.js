@@ -16,6 +16,10 @@ class ContainerService {
   restartContainer(containerId) {
     return this.api.post(`instances/${containerId}/restart`)
   }
+
+  startContainer(instance) {
+    return this.api.post('/instances', instance)
+  }
 }
 
 export default new ContainerService();

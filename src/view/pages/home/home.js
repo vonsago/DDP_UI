@@ -69,6 +69,18 @@ export default {
         }
       });
     },
+    createContainer() {
+      ContainerService.startContainer(this.form).then(res => {
+        if (res.status == 200) {
+          this.$notify({
+            title : '提示信息',
+            message : '启动成功',
+            type : 'success'
+          });
+          location.reload()
+        }
+      });
+    },
     handleCommand(command) {
       if (command=='version') {
         this.$message('当前的Docker的版本为: 18.06.1-ce');
