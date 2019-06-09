@@ -22,17 +22,55 @@
           <p class="home__header--main  text-center">Docker操作平台</p>
       </div>
     </div>
-  
-  
+  <!-- 侧边导航 -->
   <el-container>
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
     <el-menu :default-openeds="['1', '2']">
       <el-submenu index="1">
         <template slot="title"><i class="el-icon-menu"></i>导航</template>
         <el-menu-item-group>
-          <el-menu-item index="2-1">启动容器</el-menu-item>
-          <el-menu-item index="2-1">构建镜像</el-menu-item>
-          <el-menu-item index="2-2">镜像仓库</el-menu-item>
+          <el-menu-item index="2-1">
+            <!-- 启动容器表单 -->
+            <el-button type="text" @click="dialogFormVisible = true">启动容器</el-button>
+
+            <el-dialog title="启动容器" :visible.sync="dialogFormVisible">
+              <el-form :model="form">
+                <el-form-item label="镜像名称" :label-width="formLabelWidth" >
+                  <el-input v-model="form.image" autocomplete="off" placeholder="host/project/image:tag"></el-input>
+                </el-form-item>
+                <el-form-item label="镜像种类" :label-width="formLabelWidth">
+                  <el-select v-model="form.type" placeholder="请选择镜像种类">
+                    <el-option label="mysql" value="mysql"></el-option>
+                    <el-option label="redis" value="redis"></el-option>
+                    <el-option label="mongo" value="mongo"></el-option>
+                    <el-option label="tomcat" value="tomcat"></el-option>
+                    <el-option label="nginx" value="nginx"></el-option>
+                    <el-option label="jenkins" value="jenkins"></el-option>
+                    <el-option label="其他" value="other"></el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="端口映射" :label-width="formLabelWidth" >
+                  <el-input v-model="form.ports" autocomplete="off" placeholder="3306:3306,本地:容器 (不填为默认)"></el-input>
+                </el-form-item>
+                <el-form-item label="磁盘映射" :label-width="formLabelWidth" >
+                  <el-input v-model="form.volumes" autocomplete="off" placeholder="mysqldata:/var/lib/mysql, (可不填)"></el-input>
+                </el-form-item>
+                <el-form-item label="环境变量" :label-width="formLabelWidth" >
+                  <el-input v-model="form.environment" autocomplete="off" placeholder="SOMEVARIABLE=xxx, (可不填)"></el-input>
+                </el-form-item>
+              </el-form>
+              <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+              </div>
+            </el-dialog>
+          </el-menu-item>
+          <el-menu-item index="2-1">
+            构建镜像
+          </el-menu-item>
+          <el-menu-item index="2-2">
+            镜像仓库
+          </el-menu-item>
         </el-menu-item-group>
 
       </el-submenu>
@@ -45,12 +83,10 @@
       </el-submenu>
     </el-menu>
   </el-aside>
+
+  <!-- 容器列表 -->
   <el-container>
     <el-table 
-    v-loading="loading"
-    element-loading-text="拼命加载中"
-    element-loading-spinner="el-icon-loading"
-    element-loading-background="rgba(0, 0, 0, 0.8)"
     :data="Containers" border style="width: 100%"
     >
       <el-table-column
@@ -108,7 +144,6 @@
     </el-container>
   </el-container>
 </el-container>
-
 </template>
 
 <script src="./home.js"></script>

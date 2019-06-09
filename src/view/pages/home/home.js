@@ -11,6 +11,20 @@ export default {
       bannerImage,
       Containers: [],
       visible: false,
+      dialogTableVisible: false,
+      dialogFormVisible: false,
+      form: {
+        image: '',
+        ports: '',
+        volumes: '',
+        environment: '',
+        type: '',
+        // date2: [],
+        // delivery: false,
+        // resource: '',
+        // desc: ''
+      },
+      formLabelWidth: '120px',
       tableData: []
     };
   },
