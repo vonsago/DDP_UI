@@ -9,8 +9,8 @@ class ImageService {
     return this.api.get('/images')
   }
 
-  removeContainer(containerId) {
-    return this.api.delete(`/instances/${containerId}/stop`)
+  removeImage(imageId) {
+    return this.api.delete(`/images/${imageId}`)
   }
 
   restartContainer(containerId) {
