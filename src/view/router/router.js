@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-
-//home 
+ 
 import Home from '@/view/pages/home/home.vue';
 import Login from '@/view/pages/login/login.vue';
+import Repository from '@/view/pages/repository/images.vue'
 
 Vue.use(Router);
 
@@ -32,6 +32,14 @@ const router = new Router({
           public: true,
         },
       },
+      {
+        path: '/repository',
+        name: 'repository',
+        component: Repository,
+        meta: {
+          public: true,
+        },
+      }
     ]
     });
 

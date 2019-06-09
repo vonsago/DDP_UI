@@ -1,4 +1,5 @@
 import ContainerService from '@/core/docker.container';
+import ImageService from '@/core/docker.images'
 
 import bannerImage from '@/assets/images/banner.jpg';
 export default {
@@ -13,6 +14,7 @@ export default {
       visible: false,
       dialogTableVisible: false,
       dialogFormVisible: false,
+      imageFormVisible: false,
       form: {
         image: '',
         ports: '',
@@ -25,7 +27,10 @@ export default {
         // desc: ''
       },
       formLabelWidth: '120px',
-      tableData: []
+      imageFile: {
+        name: '',
+        dockerfile: ''
+      }
     };
   },
   methods: {
@@ -53,8 +58,8 @@ export default {
             message : '删除成功',
             type : 'success'
           });
-          location.reload()
         }
+        location.reload()
       });
     },
     restartContainer(index, row) {
@@ -65,8 +70,8 @@ export default {
             message : '重启成功',
             type : 'success'
           });
-          location.reload()
         }
+        location.reload()
       });
     },
     createContainer() {
@@ -77,9 +82,20 @@ export default {
             message : '启动成功',
             type : 'success'
           });
-          location.reload()
         }
+        location.reload()
       });
+    },
+    buildImage() {
+      ImageService.buildImages(this.imageFile).then(res => {
+        if (res.status == 200) {
+          this.$notify({
+            title : '提示信息',
+            message : '构建成功',
+            type : 'success'
+          });
+        }
+      })
     },
     handleCommand(command) {
       if (command=='version') {
@@ -95,8 +111,9 @@ export default {
         window.location = 'https://github.com/vonsago/service_platform'
       }
     },
-    switchCatalog(catalog) {
-      this.catalog = catalog;
+    routeRepository() {
+      alert(1)
+      this.$router.push('/repository');
     },
 
     gotoService(productId) {

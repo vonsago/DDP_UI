@@ -1,12 +1,12 @@
 import api from './api';
 
-class ContainerService {
+class ImageService {
   constructor() {
     this.api = api;
   }
 
   getList() {
-    return this.api.get('/instances')
+    return this.api.get('/images')
   }
 
   removeContainer(containerId) {
@@ -21,6 +21,13 @@ class ContainerService {
     return this.api.post('/instances', instance)
   }
 
+  buildImages(images) {
+    console.log(images); // eslint-disable-line no-console
+
+    return this.api.post('/images/build', images)
+  }
+
+  
 }
 
-export default new ContainerService();
+export default new ImageService();

@@ -25,11 +25,16 @@
   <!-- 侧边导航 -->
   <el-container>
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-    <el-menu :default-openeds="['1', '2']">
+    <el-menu default-active="2"
+      class="el-menu-vertical-demo"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b"
+      router>
       <el-submenu index="1">
         <template slot="title"><i class="el-icon-menu"></i>导航</template>
         <el-menu-item-group>
-          <el-menu-item index="2-1">
+          <el-menu-item>
             <!-- 启动容器表单 -->
             <el-button type="text" @click="dialogFormVisible = true">启动容器</el-button>
 
@@ -65,10 +70,25 @@
               </div>
             </el-dialog>
           </el-menu-item>
-          <el-menu-item index="2-1">
-            构建镜像
+          <el-menu-item>
+            <el-button type="text" @click="imageFormVisible = true">构建镜像</el-button>
+
+            <el-dialog title="构建镜像" :visible.sync="imageFormVisible">
+              <el-form :model="form">
+                <el-form-item label="镜像名称" :label-width="formLabelWidth">
+                  <el-input v-model="imageFile.name" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="dockerfile" :label-width="formLabelWidth">
+                  <el-input v-model="imageFile.dockerfile" autocomplete="off"></el-input>
+                </el-form-item>
+              </el-form>
+              <div slot="footer" class="dialog-footer">
+                <el-button @click="imageFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="buildImage">确 定</el-button>
+              </div>
+            </el-dialog>
           </el-menu-item>
-          <el-menu-item index="2-2">
+          <el-menu-item index="2-2" route="/repository">
             镜像仓库
           </el-menu-item>
         </el-menu-item-group>
