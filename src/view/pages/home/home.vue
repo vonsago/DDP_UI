@@ -92,13 +92,19 @@
             镜像仓库
           </el-menu-item>
         </el-menu-item-group>
-
       </el-submenu>
       <el-submenu index="2">
+        <template slot="title"><i class="el-icon-setting"></i>监控</template>
+        <el-menu-item-group>
+          <el-menu-item index="3-1">容器监控</el-menu-item>
+          <el-menu-item index="3-2">系统资源</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
+      <el-submenu index="3">
         <template slot="title"><i class="el-icon-setting"></i>设置</template>
         <el-menu-item-group>
-          <el-menu-item index="3-1">选项1</el-menu-item>
-          <el-menu-item index="3-2">选项2</el-menu-item>
+          <el-menu-item index="3-1">配置docker</el-menu-item>
+          <el-menu-item index="3-2">帮助信息</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
     </el-menu>
